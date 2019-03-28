@@ -1,0 +1,159 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<assert.h>
+#include<dos.h>
+#include<unistd.h>
+int addition(int a,int b);
+int subtraction(int a,int b);
+int multiplication(int a,int b);
+float division(int a,int b);
+float power(int a,int b);
+int calculator_operations();
+void sleep(int a);
+
+int main()
+{
+    int option,a,b;
+     printf("\n             Welcome to C calculator \n\n");
+
+    for(;;)
+    {
+     option=calculator_operations();
+     printf("\nEnter the two numbers\n");
+     scanf("%d %d",&a,&b);
+   if(option==0)
+   {
+        addition(a,b);
+        printf("\nThis is testing for addition\n");
+        assert(addition(5,-5)==0);
+        assert(addition(5,5)==10);
+        assert(addition(1,7)==8);
+        printf("addition is okay\n");
+   }
+    if(option==1)
+    {
+        subtraction(a,b);
+        printf("\nThis is testing for subtraction\n");
+        assert( subtraction(5,5)==0);
+        assert( subtraction(5,1)==4);
+        assert( subtraction(2,5)==-3);
+        printf("subtraction is okay\n");
+
+    }
+    if(option==2)
+    {
+        multiplication(a,b);
+        printf("\nThis is testing for multiplication\n");
+        assert(multiplication(3,4)==12);
+        assert(multiplication(5,5)==25);
+        assert(multiplication(10,4)==40);
+        printf("multiplication is okay\n");
+
+    }
+    if(option==3)
+    {
+        division(a,b);
+        printf("\nThis is testing for division\n");
+        assert(division(100,10)==10);
+         assert(division(12,3)==4);
+         assert(division(18,0)==0);
+        printf("division is okay\n");
+
+    }
+    if(option==4)
+    {
+        power(a,b);
+        printf("\nThis is testing for   power\n");
+        assert(  power(2,0)==1);
+        assert(  power(2,5)==32);
+        assert(  power(-2,5)==-32);
+        assert(  power(4,-3)==0.015625);
+        printf("  power is okay\n");
+
+    }
+    if(option==5)
+    {
+        printf("\nprogram exited\n");
+        exit(0);
+    }
+    if(option<0 || option>5)
+        printf("\nInvalid input ");
+    }
+}
+
+int calculator_operations()
+{
+int a;
+printf("\nEnter the options\n0--> addition \n1--> subtraction\n2--> multiplication\n3--> division\n4--> power\n5--> exit\n");
+   scanf("%d",&a);
+   return a;
+}
+
+int addition(int a,int b)
+{
+    int total=0;
+    total=a+b;
+    printf("\n%d + %d = %d \n",a,b,total);
+    return total;
+}
+
+int subtraction(int a,int b)
+{
+    int c = 0;
+    c = a - b;
+    printf("\n%d - %d = %d\n", a, b, c);
+    return c;
+}
+
+int multiplication(int a,int b)
+{
+    int mul=0;
+    mul=a*b;
+    printf("\n%d * %d = %d\n",a,b,mul);
+    return mul;
+}
+
+float division(int a,int b)
+{
+    float d=0;
+
+    if(b==0)
+    {
+        printf("\n%d / %d =",a,b);
+        printf("----->error number cannot be didive by 0\n");
+        return 0;
+    }
+    else
+    {
+         d=a/b;
+    printf("\n%d / %d = %f\n",a,b,d);
+    return d;
+    }
+}
+float power(int a,int num)
+{
+float  p;
+if(num==0)
+{
+p=1.000000;
+printf("\n%d power of %d = %f \n",a,num,p);
+return 1;
+}
+if(num>0)
+{
+p=a;
+for(int i=1;i<num;i++)
+p=p*a;
+printf("\n%d power of %d = %f \n",a,num,p);
+return p;
+}
+if(num<0)
+{
+p=a;
+for(int i=1;i<fabs(num);i++)
+p=p*a;
+printf("\n%d power of %d = %f \n",a,num,1/p);
+return 1/p;
+    }
+}
